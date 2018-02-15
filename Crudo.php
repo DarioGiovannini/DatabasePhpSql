@@ -20,9 +20,9 @@
 </body>
 </html>
 <?php
-$server = "192.168.245.16";
-$utente = "Admin";
-$password = "c";
+$server = "localhost";
+$utente = "root";
+$password = "";
 $database = "databasephpsql";
 
 // Create connection
@@ -38,7 +38,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+        echo "id: " . $row["id"]. " - Name: " . $row["nome"]. " " . $row["cognome"]. "<br>";
     }
 } else {
     echo "0 results";
