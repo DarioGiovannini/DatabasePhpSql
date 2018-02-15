@@ -25,8 +25,8 @@
 
 <?php
 $server = "localhost";
-$utente = "Admin";
-$password = "c";
+$utente = "root";
+$password = "";
 $database = "databasephpsql";
 
 // Create connection
@@ -36,7 +36,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "UPDATE MyGuests SET lastname='Doe' WHERE id=2";
+$sql = "UPDATE tabella SET cognome='sbru' WHERE id=1";
 
 if ($conn->query($sql) === TRUE) {
     echo "Record updated successfully";
@@ -44,13 +44,13 @@ if ($conn->query($sql) === TRUE) {
     echo "Error updating record: " . $conn->error;
 }
 
-$sql = "SELECT id, firstname, lastname FROM MyGuests";
+$sql = "SELECT id, nome, cognome FROM tabella";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+        echo "id: " . $row["id"]. " - Name: " . $row["nome"]. " " . $row["cognome"]. "<br>";
     }
 } else {
     echo "0 results";
