@@ -7,11 +7,12 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body>
-<h1> Tabella </h1>
+<h1 align="center"> Tabella </h1>
 <form action="Aggiungi.php" method="get">
-    <input type="submit" value="aggiungi" class="btn btn-success">
+    <p align="right">
+        <input type="submit" value="aggiungi" class="btn btn-success" >
+    </p>
 </form>
-
 <?php
 $server = "localhost";
 $utente = "root";
