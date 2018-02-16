@@ -8,47 +8,14 @@
 </head>
 <body>
 
-<form action="" method="get">
-    Nome<input type="text" name="nome">
-    Cognome<input type="text" name="cognome">
-    Mail<input type="text" name="mail">
+<form action="Aiuto%20update.php" method="get">
+    Nome<input type="text" name="nome" value="<?php echo $_GET['Nome']?>">
+    Cognome<input type="text" name="cognome" value="<?php echo $_GET['Cognome']?>">
+    Mail<input type="text" name="mail" value="<?php echo $_GET['email']?>">
     <input type="submit" class="btn btn-success">
+    <input type="hidden" value="<?php echo $_GET['Id']; ?>" name="Identificativo">
 </form>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
 </body>
 </html>
-
-
-<?php
-if(isset($_GET['nome']) && isset($_GET['cognome']) && isset($_GET['mail'])){
-    $server = "localhost";
-    $utente = "root";
-    $password = "";
-    $database = "databasephpsql";
-    $nome = $_GET['nome'];
-    $cognome = $_GET['cognome'];
-    $email = $_GET['mail'];
-
-    $conn = new mysqli($server, $utente, $password, $database);
-    if ($conn->connect_error) {
-        die("Connessione Fallita: " . $conn->connect_error);
-    }
-
-    $sql = "UPDATE tabella SET Nome=$nome Cognome=$cognome email=$email WHERE Id=1";
-
-    $conn->query($sql);
-    $sql = "SELECT * FROM tabella";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            echo "id: " . $row["id"]. " - Name: " . $row["nome"]. " " . $row["cognome"]. "<br>";
-        }
-    } else {
-        echo "Nessun resultato";
-    }
-
-    $conn->close();
-}
-

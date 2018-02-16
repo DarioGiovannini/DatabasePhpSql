@@ -1,26 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CRUD</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+</head>
+<body>
+
+<form action="" method="get">
+    Nome<input type="text" name="nome">
+    Cognome<input type="text" name="cognome">
+    Mail<input type="email" name="mail">
+    <input type="submit" class="btn btn-success">
+</form>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+</body>
+</html>
 <?php
-$server = "localhost";
-$utente = "root";
-$password = "";
-$database = "databasephpsql";
-$id=
-
-$conn = new mysqli($server, $utente, $password, $database);
-if ($conn->connect_error) {
-    die("Connessione fallita: " . $conn->connect_error);
-}
-
-
-$sql = "INSERT INTO tabella(Nome, Cognome, email)
-VALUES ('John', 'Doe', 'john@esempio.com')";
-$conn->query($sql);
-$sql = "SELECT * FROM tabella";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        echo " " . $row["Id"]. "  " . $row["Nome"]. " " . $row["Cognome"]. " " . $row["email"] . "<br>";
+if(isset($_GET['nome']) && isset($_GET['cognome']) && isset($_GET["mail"])){
+    $server = "localhost";
+    $utente = "root";
+    $password = "";
+    $database = "databasephpsql";
+    $nome = $_GET['nome'];
+    $cognome = $_GET['cognome'];
+    $email = $_GET['mail'];
+    $conn = new mysqli($server, $utente, $password, $database);
+    if ($conn->connect_error) {
+        die("Connessione fallita: " . $conn->connect_error);
     }
-} else {
-    echo "Nessun Risultato";
-}
-$conn->close();
+    $sql = "INSERT INTO tabella(Nome, Cognome, email)
+VALUES ('$nome', '$cognome', '$email')";
+    $conn->query($sql);
+    header("location:http://localhost:63342/DatabasePhpSql/CRUD.php");
+    }
+
