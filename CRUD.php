@@ -25,13 +25,21 @@ $sql = "SELECT * FROM tabella";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     echo "<table class='table table-hoover'>";
+    echo "<thead> <tr>
+            <th> Id    </th>
+            <th> Nome </th>
+            <th> Cognome   </th>
+            <th> Email  </th>
+            <th> Update  </th>
+            <th> Delete  </th>
+    </tr>";
     while($row = $result->fetch_assoc()) {
         $Id=$row["Id"];
         $Email=$row["email"];
         $nome=$row["Nome"];
         $cognome=$row["Cognome"];
         echo "<tr>";
-        echo "<td>" . $row["Id"]. "</td><td>" . $row["Nome"]. "</td><td>" . $row["Cognome"]. "</td><td>" . $row["email"] . "</td><td>" . "</td><td>" ."<form action=\"Update.php\" method=\"get\">
+        echo "<td>" . $row["Id"]. "</td><td>" . $row["Nome"]. "</td><td>" . $row["Cognome"]. "</td><td>" . $row["email"] . "</td><td>" ."<form action=\"Update.php\" method=\"get\">
         <label for='Update'></label>
         <input type='hidden' value='$Id' name='Id'>
         <input type='hidden' value='$nome' name='Nome'>
