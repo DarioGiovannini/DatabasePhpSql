@@ -11,7 +11,7 @@
 <form action="Aiuto%20update.php" method="get">
     Nome<input type="text" name="nome" value="<?php echo $_GET['Nome']?>">
     Cognome<input type="text" name="cognome" value="<?php echo $_GET['Cognome']?>">
-    Mail<input type="text" name="mail" value="<?php echo $_GET['email']?>">
+    Mail<input type="email" name="mail" value="<?php echo $_GET['email']?>">
     <input type="submit" class="btn btn-success">
     <input type="hidden" value="<?php echo $_GET['Id']; ?>" name="Identificativo">
 </form>
