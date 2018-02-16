@@ -58,6 +58,7 @@ if ($result->num_rows > 0) {
 } else {
     echo "Nessun Risultato";
 }
+$conn->close();
 ?>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.js"></script>

@@ -11,5 +11,6 @@ if ($conn->connect_error) {
 
 $sql = "DELETE FROM tabella WHERE Id=$Id";
 $conn->query($sql);
+$conn->close();
 header("location:http://localhost:63342/DatabasePhpSql/CRUD.php");
 ?>

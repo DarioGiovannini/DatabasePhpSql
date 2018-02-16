@@ -32,8 +32,10 @@ if(isset($_GET['nome']) && isset($_GET['cognome']) && isset($_GET["mail"])){
         die("Connessione fallita: " . $conn->connect_error);
     }
     $sql = "INSERT INTO tabella(Nome, Cognome, email)
-VALUES ('$nome', '$cognome', '$email')";
+    VALUES ('$nome', '$cognome', '$email')";
     $conn->query($sql);
+    $conn->close();
     header("location:http://localhost:63342/DatabasePhpSql/CRUD.php");
     }
+
 
