@@ -83,7 +83,7 @@ if ($result->num_rows > 0) {
 <script src="js/bootstrap.js"></script>
 </body>
 </html>
-
+<h1>ciao</h1>
 <?php
 if(isset($_POST['user']) && isset($_POST['Cognome']) && isset($_POST['email'])){
     $nome=$_POST['user'];
