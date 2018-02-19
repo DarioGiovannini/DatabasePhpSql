@@ -37,8 +37,9 @@ if(isset($_GET['nome']) && isset($_GET['cognome']) && isset($_GET["mail"])) {
         $sql = "INSERT INTO tabella(Nome, Cognome, email) VALUES ('$nome', '$cognome', '$email')";
         $conn->query($sql);
         $conn->close();
-        header("location:http://localhost:63342/DatabasePhpSql/Crud.php");
+        header("location:http://localhost/DatabasePhpSql/CRUD.php");
     }
+    echo "<script> alert('Nome e Cognome già registrati')</script>";
 }
 
 
