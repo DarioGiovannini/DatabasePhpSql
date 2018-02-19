@@ -19,17 +19,27 @@
 </body>
 </html>
 <?php
-if(isset($_GET['nome']) && isset($_GET['cognome']) && isset($_GET["mail"])){
+if(isset($_GET['nome']) && isset($_GET['cognome']) && isset($_GET["mail"])) {
     include 'Connessione.php';
     $nome = $conn->real_escape_string(htmlentities($_GET['nome']));
     $cognome = $conn->real_escape_string(htmlentities($_GET['cognome']));
     $email = $conn->real_escape_string(htmlentities($_GET['mail']));
-    include_once 'Script/classverifyEmail.php';
-    $vmail = new verifyEmail();
-    $sql = "INSERT INTO tabella(Nome, Cognome, email) VALUES ('$nome', '$cognome', '$email')";
-    $conn->query($sql);
-    $conn->close();
-    header("location:http://localhost:63342/DatabasePhpSql/Crud.php");
+    $sql = "SELECT * FROM tabella";
+    $result = $conn->query($sql);
+    $f=false;
+    while ($row = $result->fetch_assoc()) {
+        if ($row["Nome"] == $nome && $row["Cognome"] == $cognome) {
+            $f = true;
+            break;
+        }
     }
+    if (!$f) {
+        $sql = "INSERT INTO tabella(Nome, Cognome, email) VALUES ('$nome', '$cognome', '$email')";
+        $conn->query($sql);
+        $conn->close();
+        header("location:http://localhost:63342/DatabasePhpSql/Crud.php");
+    }
+}
+
 
 
