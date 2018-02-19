@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CRUD</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/Colori.css">
 </head>
 <body>
-<h1 align="center"> Tabella </h1>
+<div class="gianni">
+    <h1 align="center"> Database </h1>
+</div>
 <form action="Aggiungi.php" method="get">
     <p align="right">
         <input type="submit" value="aggiungi" class="btn btn-success" >
@@ -28,10 +31,10 @@ if ($result->num_rows > 0) {
             <th> Delete  </th>
     </tr>";
     while($row = $result->fetch_assoc()) {
-        $id=htmlentities($row["Id"]);
-        $email=htmlentities($row["email"]);
-        $nome=htmlentities($row["Nome"]);
-        $cognome=htmlentities($row["Cognome"]);
+        $id=$conn->real_escape_string(htmlentities($row["Id"]));
+        $email=$conn->real_escape_string(htmlentities($row["email"]));
+        $nome=$conn->real_escape_string(htmlentities($row["Nome"]));
+        $cognome=$conn->real_escape_string(htmlentities($row["Cognome"]));
         echo "<tr>";
         echo "<td>" . $row["Id"]. "</td><td>" . $row["Nome"]. "</td><td>" . $row["Cognome"]. "</td><td>" . $row["email"] . "</td><td>" ."<form action=\"Update.php\" method=\"get\">
         <label for='Update'></label>
