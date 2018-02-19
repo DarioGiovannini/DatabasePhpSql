@@ -28,10 +28,10 @@ if ($result->num_rows > 0) {
             <th> Delete  </th>
     </tr>";
     while($row = $result->fetch_assoc()) {
-        $id=htmlentities($row["Id"]);
-        $email=htmlentities($row["email"]);
-        $nome=htmlentities($row["Nome"]);
-        $cognome=htmlentities($row["Cognome"]);
+        $id=$conn->real_escape_string(htmlentities($row["Id"]));
+        $email=$conn->real_escape_string(htmlentities($row["email"]));
+        $nome=$conn->real_escape_string(htmlentities($row["Nome"]));
+        $cognome=$conn->real_escape_string(htmlentities($row["Cognome"]));
         echo "<tr>";
         echo "<td>" . $row["Id"]. "</td><td>" . $row["Nome"]. "</td><td>" . $row["Cognome"]. "</td><td>" . $row["email"] . "</td><td>" ."<form action=\"Update.php\" method=\"get\">
         <label for='Update'></label>

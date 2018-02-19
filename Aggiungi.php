@@ -21,14 +21,14 @@
 <?php
 if(isset($_GET['nome']) && isset($_GET['cognome']) && isset($_GET["mail"])){
     include 'Connessione.php';
-    $nome = htmlentities($_GET['nome']);
-    $cognome = htmlentities($_GET['cognome']);
-    $email = htmlentities($_GET['mail']);
+    $nome = $conn->real_escape_string(htmlentities($_GET['nome']));
+    $cognome = $conn->real_escape_string(htmlentities($_GET['cognome']));
+    $email = $conn->real_escape_string(htmlentities($_GET['mail']));
     $sql = "INSERT INTO tabella(Nome, Cognome, email)
     VALUES ('$nome', '$cognome', '$email')";
     $conn->query($sql);
     $conn->close();
-    header("location:http://localhost:63342/DatabasePhpSql/CRUD.php");
+    header("location:http://localhost:63342/DatabasePhpSql/Crud.php");
     }
 
 
