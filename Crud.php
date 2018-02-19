@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CRUD</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/Colori.css">
 </head>
 <body>
-<h1 align="center"> Tabella </h1>
+<div class="gianni">
+    <h1 align="center"> Database </h1>
+</div>
 <form action="Aggiungi.php" method="get">
     <p align="right">
         <input type="submit" value="aggiungi" class="btn btn-success" >
