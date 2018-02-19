@@ -11,7 +11,7 @@
 <form action="" method="get">
     Nome<input type="text" name="nome" required>
     Cognome<input type="text" name="cognome" required>
-    Mail<input type="email" name="mail" required>
+    Mail<input type="email" name="mail">
     <input type="submit" class="btn btn-success">
 </form>
 <script src="js/jquery-3.3.1.min.js"></script>
@@ -24,8 +24,9 @@ if(isset($_GET['nome']) && isset($_GET['cognome']) && isset($_GET["mail"])){
     $nome = $conn->real_escape_string(htmlentities($_GET['nome']));
     $cognome = $conn->real_escape_string(htmlentities($_GET['cognome']));
     $email = $conn->real_escape_string(htmlentities($_GET['mail']));
-    $sql = "INSERT INTO tabella(Nome, Cognome, email)
-    VALUES ('$nome', '$cognome', '$email')";
+    include_once 'Script/classverifyEmail.php';
+    $vmail = new verifyEmail();
+    $sql = "INSERT INTO tabella(Nome, Cognome, email) VALUES ('$nome', '$cognome', '$email')";
     $conn->query($sql);
     $conn->close();
     header("location:http://localhost:63342/DatabasePhpSql/Crud.php");
