@@ -14,14 +14,7 @@
     </p>
 </form>
 <?php
-$server = "localhost";
-$utente = "root";
-$password = "";
-$database = "databasephpsql";
-$conn = new mysqli($server, $utente, $password, $database);
-if ($conn->connect_error) {
-    die("Connessione Fallita: " . $conn->connect_error);
-}
+include 'Connessione.php';
 $sql = "SELECT * FROM tabella";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -35,22 +28,22 @@ if ($result->num_rows > 0) {
             <th> Delete  </th>
     </tr>";
     while($row = $result->fetch_assoc()) {
-        $Id=$row["Id"];
-        $Email=$row["email"];
-        $nome=$row["Nome"];
-        $cognome=$row["Cognome"];
+        $id=htmlentities($row["Id"]);
+        $email=htmlentities($row["email"]);
+        $nome=htmlentities($row["Nome"]);
+        $cognome=htmlentities($row["Cognome"]);
         echo "<tr>";
         echo "<td>" . $row["Id"]. "</td><td>" . $row["Nome"]. "</td><td>" . $row["Cognome"]. "</td><td>" . $row["email"] . "</td><td>" ."<form action=\"Update.php\" method=\"get\">
         <label for='Update'></label>
-        <input type='hidden' value='$Id' name='Id'>
+        <input type='hidden' value='$id' name='Id'>
         <input type='hidden' value='$nome' name='Nome'>
         <input type='hidden' value='$cognome' name='Cognome'>
-        <input type='hidden' value='$Email' name='email'>
+        <input type='hidden' value='$email' name='email'>
         <input type=\"submit\" value=\"Update\" class=\"btn btn-warning\" name='Update' id='Update' >
         </form>" ."</td><td>
         <form action='Delete.php' method='get'>
         <label for='submit'></label>
-        <input type='hidden' value='$Id' name='Righe'>
+        <input type='hidden' value='$id' name='Righe'>
         <input type=\"submit\" value=\"Delete\" class=\"btn btn-danger\" name='submit' id='submit' > </form>" ."</td>" .
         "</form>";
        echo "</tr>";

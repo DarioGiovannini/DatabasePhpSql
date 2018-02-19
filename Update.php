@@ -8,10 +8,10 @@
 </head>
 <body>
 
-<form action="Aiuto%20update.php" method="get">
-    Nome<input type="text" name="nome" value="<?php echo $_GET['Nome']?>">
-    Cognome<input type="text" name="cognome" value="<?php echo $_GET['Cognome']?>">
-    Mail<input type="email" name="mail" value="<?php echo $_GET['email']?>">
+<form action="AiutoUpdate.php" method="get">
+    Nome<input type="text" name="nome" value="<?php echo $_GET['Nome']?>" required>
+    Cognome<input type="text" name="cognome" value="<?php echo $_GET['Cognome']?>" required>
+    Mail<input type="email" name="mail" value="<?php echo $_GET['email']?>" required>
     <input type="submit" class="btn btn-success">
     <input type="hidden" value="<?php echo $_GET['Id']; ?>" name="Identificativo">
 </form>
