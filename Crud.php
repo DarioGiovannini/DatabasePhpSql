@@ -38,7 +38,7 @@ if ($result->num_rows > 0) {
         $nome=$conn->real_escape_string(htmlentities($row["Nome"]));
         $cognome=$conn->real_escape_string(htmlentities($row["Cognome"]));
         echo "<tr>";
-        echo "<td>" . $row["Id"]. "</td><td>" . $row["Nome"]. "</td><td>" . $row["Cognome"]. "</td><td>" . $row["email"] . "</td><td>" ."<form action=\"Update.php\" method=\"get\">
+        echo "<td name='id' onclick='Ordina(document.getElementsByTagName(\"tr\"),document.getElementsByName(\"id\"))'>" . $row["Id"]. "</td><td name='nome' onclick='Ordina(document.getElementsByTagName(\"tr\"),document.getElementsByName(\"nome\"))'>" . $row["Nome"]. "</td><td>" . $row["Cognome"]. "</td><td>" . $row["email"] . "</td><td>" ."<form action=\"Update.php\" method=\"get\">
         <label for='Update'></label>
         <input type='hidden' value='$id' name='Id'>
         <input type='hidden' value='$nome' name='Nome'>
@@ -60,8 +60,7 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 <form>
-    <input type="text" id="ricerca">
-    <input type="button" value="Cerca" class="btn btn-success" onclick="Ricerca(document.getElementById('ricerca').value,document.getElementsByTagName('td'));">
+    <h4>Ricerca</h4> <input type="text" id="ricerca" onkeyup="Ricerca(document.getElementById('ricerca').value,document.getElementsByTagName('td'));">
 </form>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
