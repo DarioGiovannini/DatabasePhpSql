@@ -6,6 +6,8 @@
     <title>CRUD</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/Colori.css">
+    <link rel="script" type="text/javascript" href="Script/Cerca.js">
+    <script language="JavaScript" type="text/JavaScript" src="Script/Cerca.js"></script>
 </head>
 <body>
 <div class="gianni">
@@ -35,8 +37,8 @@ if ($result->num_rows > 0) {
         $email=$conn->real_escape_string(htmlentities($row["email"]));
         $nome=$conn->real_escape_string(htmlentities($row["Nome"]));
         $cognome=$conn->real_escape_string(htmlentities($row["Cognome"]));
-        echo "<tr id='$id'>";
-        echo "<td>" . $row["Id"]. "</td><td>" . $row["Nome"]. "</td><td>" . $row["Cognome"]. "</td><td>" . $row["email"] . "</td><td>" ."<form action=\"Update.php\" method=\"get\">
+        echo "<tr>";
+        echo "<td name='elementi'>" . $row["Id"]. "</td><td name='elementi'>" . $row["Nome"]. "</td><td name='elementi'>" . $row["Cognome"]. "</td><td name='elementi'>" . $row["email"] . "</td><td>" ."<form action=\"Update.php\" method=\"get\">
         <label for='Update'></label>
         <input type='hidden' value='$id' name='Id'>
         <input type='hidden' value='$nome' name='Nome'>
@@ -57,8 +59,10 @@ if ($result->num_rows > 0) {
 }
 $conn->close();
 ?>
-<input type="text" id="ricerca">
-<input type="button" value="Cerca" class="btn btn-success" onclick="">
+<form>
+    <input type="text" id="ricerca">
+    <input type="button" value="Cerca" class="btn btn-success" onclick="Ricerca(document.getElementById('ricerca').value,document.getElementsByName('elementi'));">
+</form>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
 </body>
