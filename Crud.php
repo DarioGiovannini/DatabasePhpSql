@@ -35,7 +35,7 @@ if ($result->num_rows > 0) {
         $email=$conn->real_escape_string(htmlentities($row["email"]));
         $nome=$conn->real_escape_string(htmlentities($row["Nome"]));
         $cognome=$conn->real_escape_string(htmlentities($row["Cognome"]));
-        echo "<tr>";
+        echo "<tr id='$id'>";
         echo "<td>" . $row["Id"]. "</td><td>" . $row["Nome"]. "</td><td>" . $row["Cognome"]. "</td><td>" . $row["email"] . "</td><td>" ."<form action=\"Update.php\" method=\"get\">
         <label for='Update'></label>
         <input type='hidden' value='$id' name='Id'>
@@ -57,6 +57,8 @@ if ($result->num_rows > 0) {
 }
 $conn->close();
 ?>
+<input type="text" id="ricerca">
+<input type="button" value="Cerca" class="btn btn-success" onclick="">
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
 </body>
