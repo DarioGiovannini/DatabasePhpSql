@@ -3,7 +3,7 @@ function Ricerca(Filtro,Riga)
     Scolora(Riga);
     var i;
     for(i=0;i<Riga.length;i++){
-        if(Riga[i].innerHTML.search(Filtro)) Riga[i].style.backgroundColor="red";
+        if(!Riga[i].innerHTML.toUpperCase().search(Filtro.toUpperCase())&& Filtro!="") Riga[i].style.backgroundColor="red";
     }
 }
 
