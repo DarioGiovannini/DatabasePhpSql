@@ -26,6 +26,24 @@ function Ordina(tabella,elementi){
     appoggio.sort();
 
     for(var i=0;i<appoggio.length;i++)  tabella[i+1].innerHTML=gianni[appoggio[i][appoggio[i].length-1]];
-
-
 }
+
+function Select(Tabella) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            Tabella.innerHTML =   "<thead> " +
+                "<th> Id      </th>" +
+                "<th> Nome    </th>" +
+                "<th> Cognome </th>" +
+                "<th> Email   </th>" +
+                "<th> Update  </th>" +
+                "<th> Delete  </th>" +
+                "</thead>" +
+                this.responseText;
+        }
+    };
+    xhttp.open("GET", "Select.php", true);
+    xhttp.send();
+}
+

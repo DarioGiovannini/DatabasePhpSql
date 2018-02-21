@@ -7,9 +7,9 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/Colori.css">
     <link rel="script" type="text/javascript" href="Script/Cerca.js">
-    <script language="JavaScript" type="text/JavaScript" src="Script/Cerca.js"></script>
+    <script language="JavaScript" type="text/JavaScript" src="Script/JavaScript.js"></script>
 </head>
-<body>
+<body onload="Select(document.getElementById('Tabella'));">
 <div class="gianni">
     <h1 align="center"> Database </h1>
 </div>
@@ -18,18 +18,7 @@
         <input type="submit" value="aggiungi" class="btn btn-success" >
     </p>
 </form>
-<table class='table table-hoover'>
-<thead>
-    <th> Id    </th>
-    <th> Nome </th>
-    <th> Cognome   </th>
-    <th> Email  </th>
-    <th> Update  </th>
-    <th> Delete  </th>
-</thead>
-<script>
-
-</script>
+<table class='table table-hoover' id="Tabella">
 </table>
 <form>
     <h4>Ricerca</h4> <input type="text" id="ricerca" onkeyup="Ricerca(document.getElementById('ricerca').value,document.getElementsByTagName('td'));">
