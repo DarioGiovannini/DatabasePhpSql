@@ -47,9 +47,6 @@ function Select(Tabella) {
     xhttp.send();
 }
 
-
-}
-
 function Update(tabella,elementi){
     var appoggio=new Array();
     var gianni=new Array();
