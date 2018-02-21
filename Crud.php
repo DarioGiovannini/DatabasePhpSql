@@ -18,47 +18,19 @@
         <input type="submit" value="aggiungi" class="btn btn-success" >
     </p>
 </form>
-<?php
-include 'Connessione.php';
-$sql = "SELECT * FROM tabella";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    echo "<table class='table table-hoover'>";
-    echo "<thead> <tr>
-            <th> Id    </th>
-            <th> Nome </th>
-            <th> Cognome   </th>
-            <th> Email  </th>
-            <th> Update  </th>
-            <th> Delete  </th>
-    </tr>";
-    while($row = $result->fetch_assoc()) {
-        $id=$conn->real_escape_string(htmlentities($row["Id"]));
-        $email=$conn->real_escape_string(htmlentities($row["email"]));
-        $nome=$conn->real_escape_string(htmlentities($row["Nome"]));
-        $cognome=$conn->real_escape_string(htmlentities($row["Cognome"]));
-        echo "<tr>";
-        echo "<td name='id' onclick='Ordina(document.getElementsByTagName(\"tr\"),document.getElementsByName(\"id\"))'>" . $row["Id"]. "</td><td name='nome' onclick='Ordina(document.getElementsByTagName(\"tr\"),document.getElementsByName(\"nome\"))'>" . $row["Nome"]. "</td><td>" . $row["Cognome"]. "</td><td>" . $row["email"] . "</td><td>" ."<form action=\"Update.php\" method=\"get\">
-        <label for='Update'></label>
-        <input type='hidden' value='$id' name='Id'>
-        <input type='hidden' value='$nome' name='Nome'>
-        <input type='hidden' value='$cognome' name='Cognome'>
-        <input type='hidden' value='$email' name='email'>
-        <input type=\"submit\" value=\"Update\" class=\"btn btn-warning\" name='Update' id='Update' >
-        </form>" ."</td><td>
-        <form action='Delete.php' method='get'>
-        <label for='submit'></label>
-        <input type='hidden' value='$id' name='Righe'>
-        <input type=\"submit\" value=\"Delete\" class=\"btn btn-danger\" name='submit' id='submit' > </form>" ."</td>" .
-        "</form>";
-       echo "</tr>";
-    }
-    echo "</table>";
-} else {
-    echo "Nessun Risultato";
-}
-$conn->close();
-?>
+<table class='table table-hoover'>
+<thead>
+    <th> Id    </th>
+    <th> Nome </th>
+    <th> Cognome   </th>
+    <th> Email  </th>
+    <th> Update  </th>
+    <th> Delete  </th>
+</thead>
+<script>
+
+</script>
+</table>
 <form>
     <h4>Ricerca</h4> <input type="text" id="ricerca" onkeyup="Ricerca(document.getElementById('ricerca').value,document.getElementsByTagName('td'));">
 </form>
