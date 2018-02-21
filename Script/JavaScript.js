@@ -82,14 +82,15 @@ function Update(elemento) {
     var cognome=elemento.getElementsByTagName('input')[1].value;
     var email=elemento.getElementsByTagName('input')[2].value;
     var id=elemento.getElementsByTagName('input')[3].value;
+    alert(nome);
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             if (this.readyState == 4 && this.status == 200) {
                 if(this.responseText!="")  elemento.getElementsByTagName('input')[0].value=this.responseText;
-                else elemento.innerHTML="<input type=\"button\" value=\"aggiungi\" class=\"btn btn-success\" onclick=\"Form(this.parentNode,'Update');\">";
+                else elemento.innerHTML="<input type=\"button\" value=\"Update\" class=\"btn btn-success\" onclick=\"Form(this.parentNode,'Update');\">";
             }
         }
     };
-    xhttp.open("GET", "Update.php??nome=" + nome + "&cognome=" + cognome + "&email=" + email +"&Identificativo="+id, true);
+    xhttp.open("GET", "Update.php?nome=" + nome + "&cognome=" + cognome + "&email=" + email +"&Identificativo="+id, true);
     xhttp.send();
 }
