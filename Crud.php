@@ -13,11 +13,9 @@
 <div class="gianni">
     <h1 align="center"> Database </h1>
 </div>
-<form action="Aggiungi.php" method="get">
-    <p align="right">
-        <input type="submit" value="aggiungi" class="btn btn-success" >
-    </p>
-</form>
+<p align="right" id="p")>
+    <input type="button" value="aggiungi" class="btn btn-success" onclick="Form(document.getElementById('p'),'Aggiungi');">
+</p>
 <table class='table table-hoover' id="Tabella">
 </table>
 <form>

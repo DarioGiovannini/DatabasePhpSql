@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CRUD</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-</head>
-<body>
-
-<form action="AiutoUpdate.php" method="get">
-    Nome<input type="text" name="nome" value="<?php echo $_GET['Nome']?>" required>
-    Cognome<input type="text" name="cognome" value="<?php echo $_GET['Cognome']?>" required>
-    Mail<input type="email" name="mail" value="<?php echo $_GET['email']?>">
-    <input type="submit" class="btn btn-success">
-    <input type="hidden" value="<?php echo $_GET['Id']; ?>" name="Identificativo">
-</form>
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
-</body>
-</html>
+<?php
+    include 'Connessione.php';
+    $nome = $conn->real_escape_string(htmlentities($_GET['nome']));
+    $cognome = $conn->real_escape_string(htmlentities($_GET['cognome']));
+    $email = $conn->real_escape_string(htmlentities($_GET['email']));
+    $id=$conn->real_escape_string(htmlentities($_GET['Identificativo']));
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+    }
+    else{
+        $sql = "UPDATE tabella SET Nome='$nome',Cognome='$cognome',email='$email' WHERE Id='$id'";
+        $conn->query($sql);
+        $conn->close();
+    }
