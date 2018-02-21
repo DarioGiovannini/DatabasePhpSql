@@ -29,3 +29,18 @@ function Ordina(tabella,elementi){
 
 
 }
+
+function Update(tabella,elementi){
+    var appoggio=new Array();
+    var gianni=new Array();
+    for(var i=0;i<elementi.length;i++)
+    {
+        appoggio[i]=elementi[i].innerHTML + i.toString();
+        gianni[i]=tabella[i+1].innerHTML;;
+    }
+    appoggio.sort();
+
+    for(var i=0;i<appoggio.length;i++)  tabella[i+1].innerHTML=gianni[appoggio[i][appoggio[i].length-1]];
+
+
+}
