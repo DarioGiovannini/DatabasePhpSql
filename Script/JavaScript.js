@@ -87,7 +87,7 @@ function Update(elemento) {
         if (this.readyState == 4 && this.status == 200) {
             if (this.readyState == 4 && this.status == 200) {
                 if(this.responseText!="")  elemento.getElementsByTagName('input')[0].value=this.responseText;
-                else elemento.innerHTML="<input type=\"button\" value=\"Update\" class=\"btn btn-success\" onclick=\"Form(this.parentNode,'Update');\">";
+                else elemento.innerHTML="<input type=\"button\" value=\"Update\" class=\"btn btn-warning\" onclick=\"Form(this.parentNode,'Update');\">";
             }
         }
     };
