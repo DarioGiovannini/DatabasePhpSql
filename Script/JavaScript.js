@@ -48,7 +48,6 @@ function Select(Tabella) {
 }
 
 function Form(elemento,tipo,id){
-    alert(id);
     var nome="",cognome="",email="";
     if(tipo=="Update"){
         nome=elemento.getElementsByTagName('input')[0].value;
@@ -84,13 +83,9 @@ function Aggiungi(elemento) {
 function Update(elemento) {
     var xhttp = new XMLHttpRequest();
     var nome=elemento.getElementsByTagName('input')[0].value;
-    alert(nome);
     var cognome=elemento.getElementsByTagName('input')[1].value;
-    alert(cognome);
     var email=elemento.getElementsByTagName('input')[2].value;
-    alert(email);
     var id=elemento.getElementsByTagName('input')[3].value;
-    alert(elemento.getElementsByTagName('input')[3]);
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             if(this.responseText!="")  elemento.getElementsByTagName('input')[0].value=this.responseText;
