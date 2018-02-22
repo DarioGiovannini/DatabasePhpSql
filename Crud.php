@@ -14,7 +14,7 @@
     <h1 align="center"> Database </h1>
 </div>
 <p align="right" id="p")>
-    <input type="button" value="aggiungi" class="btn btn-success" onclick="Form(document.getElementById('p'),'Aggiungi',0);">
+    <button class="btn btn-success glyphicon glyphicon-plus" onclick="Form(document.getElementById('p'),'Aggiungi',0);">Aggiungi</button>
 </p>
 <table class='table table-hoover' id="Tabella">
 </table>
