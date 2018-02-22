@@ -47,7 +47,8 @@ function Select(Tabella) {
     xhttp.send();
 }
 
-function Form(elemento,tipo){
+function Form(elemento,tipo,id){
+    alert(id);
     var nome="",cognome="",email="";
     if(tipo=="Update"){
         nome=elemento.getElementsByTagName('input')[0].value;
@@ -56,7 +57,8 @@ function Form(elemento,tipo){
     }
     elemento.innerHTML = "Nome<input type=\"text\" name=\"nome\" value='" + nome + "'    required>\n" +
         "Cognome<input type=\"text\" name=\"cognome\"  value='" + cognome + "'  required>\n" +
-        "Mail<input type=\"email\" name=\"mail\" value=" + email + ">\n";
+        "Mail<input type=\"email\" name=\"mail\" value=" + email + ">\n" +
+        "<input type='hidden' name='Identificativo' value=" + id + ">\n";
     if(tipo=="Aggiungi")elemento.innerHTML+="<input type=\"submit\" class=\"btn btn-success\" onclick=\"Aggiungi(this.parentNode)\">\n";
     else if(tipo=="Update")elemento.innerHTML+="<input type=\"submit\" class=\"btn btn-success\" onclick=\"Update(this.parentNode)\">\n";
 }
@@ -69,7 +71,10 @@ function Aggiungi(elemento) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             if(this.responseText!="")  elemento.getElementsByTagName('input')[0].value=this.responseText;
-            else elemento.innerHTML="<input type=\"button\" value=\"aggiungi\" class=\"btn btn-success\" onclick=\"Form(document.getElementById('p'),'Aggiungi');\">";
+            else {
+                elemento.innerHTML = "<input type=\"button\" value=\"aggiungi\" class=\"btn btn-success\" onclick=\"Form(document.getElementById('p'),'Aggiungi',0);\">";
+                Select(document.getElementById('Tabella'));
+            }
         }
     };
     xhttp.open("GET", "Aggiungi.php?nome=" + nome + "&cognome=" + cognome + "&email=" + email, true);
@@ -79,18 +84,34 @@ function Aggiungi(elemento) {
 function Update(elemento) {
     var xhttp = new XMLHttpRequest();
     var nome=elemento.getElementsByTagName('input')[0].value;
-    var cognome=elemento.getElementsByTagName('input')[1].value;
-    var email=elemento.getElementsByTagName('input')[2].value;
-    var id=elemento.getElementsByTagName('input')[3].value;
     alert(nome);
+    var cognome=elemento.getElementsByTagName('input')[1].value;
+    alert(cognome);
+    var email=elemento.getElementsByTagName('input')[2].value;
+    alert(email);
+    var id=elemento.getElementsByTagName('input')[3].value;
+    alert(elemento.getElementsByTagName('input')[3]);
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            if (this.readyState == 4 && this.status == 200) {
-                if(this.responseText!="")  elemento.getElementsByTagName('input')[0].value=this.responseText;
-                else elemento.innerHTML="<input type=\"button\" value=\"Update\" class=\"btn btn-warning\" onclick=\"Form(this.parentNode,'Update');\">";
+            if(this.responseText!="")  elemento.getElementsByTagName('input')[0].value=this.responseText;
+            else {
+                elemento.innerHTML="<input type=\"button\" value=\"Update\" class=\"btn btn-warning\" onclick=\"Form(this.parentNode,'Update',id);\">";
+                Select(document.getElementById('Tabella'));
             }
         }
     };
     xhttp.open("GET", "Update.php?nome=" + nome + "&cognome=" + cognome + "&email=" + email +"&Identificativo="+id, true);
+    xhttp.send();
+}
+
+function Delete(Id){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            Select(document.getElementById('Tabella'));
+        }
+
+    }
+    xhttp.open("GET", "Delete.php?Identificativo="+Id, true);
     xhttp.send();
 }
