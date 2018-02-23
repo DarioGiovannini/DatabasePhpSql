@@ -7,7 +7,7 @@ function Ricerca(filtro,elementi)
         if(elementi[i].innerHTML.toUpperCase().search(filtro.toUpperCase())!=-1 && elementi[i].innerHTML.search('<')==-1) elementi[i].style.backgroundColor="lightblue";
     }
 }
-
+var appoggio;
 function Scolora(elementi) {
     var i;
     for(i=0;i<elementi.length;i++){
@@ -49,7 +49,7 @@ function Select(Tabella) {
 
 function Form(elemento,tipo,id){
     var nome="",cognome="",email="";
-    var appoggio=elemento.innerHTML;
+    appoggio=elemento.innerHTML;
     if(tipo=="Update"){
         nome=elemento.getElementsByTagName('input')[0].value;
         cognome=elemento.getElementsByTagName('input')[1].value;
@@ -59,9 +59,9 @@ function Form(elemento,tipo,id){
         "Cognome<input type=\"text\" name=\"cognome\"  value='" + cognome + "'  required>\n" +
         "Mail<input type=\"email\" name=\"mail\" value=" + email + ">\n" +
         "<input type='hidden' name='Identificativo' value=" + id + ">\n";
-    if(tipo=="Aggiungi")elemento.innerHTML+="<input type=\"submit\" class=\"btn btn-success\" onclick=\"Aggiungi(this.parentNode)\">\n";
-    else if(tipo=="Update")elemento.innerHTML+="<input type=\"submit\" class=\"btn btn-success\" onclick=\"Update(this.parentNode)\">\n";
-    elemento.innerHTML+="<button class='btn btn-danger glyphicon glyphicon-bitcoin' onclick='Annulla(appoggio);'>Annulla</button>"
+    if(tipo=="Aggiungi")elemento.innerHTML+="<button class=\"btn btn-success glyphicon glyphicon-envelope\" onclick=\"Aggiungi(this.parentNode)\"> Invia</button>\n";
+    else if(tipo=="Update")elemento.innerHTML+="<button class=\"btn btn-success glyphicon glyphicon-envelope\" onclick=\"Update(this.parentNode)\"> Invia</button>\n";
+    elemento.innerHTML+="<button id='Annulla' class='btn btn-danger glyphicon glyphicon-remove' onclick='Annulla(this.parentNode)'> Annulla</button>";
 }
 
 function Aggiungi(elemento) {
@@ -73,7 +73,7 @@ function Aggiungi(elemento) {
         if (this.readyState == 4 && this.status == 200) {
             if(this.responseText!="")  elemento.getElementsByTagName('input')[0].value=this.responseText;
             else {
-                elemento.innerHTML = "<button class=\"btn btn-success glyphicon glyphicon-plus\" onclick=\"Form(document.getElementById('p'),'Aggiungi',0);\">Aggiungi</button>";
+                elemento.innerHTML = "<button class=\"btn btn-success glyphicon glyphicon-plus\" onclick=\"Form(document.getElementById('p'),'Aggiungi',0);\"> Aggiungi</button>";
                 Select(document.getElementById('Tabella'));
             }
         }
@@ -104,12 +104,11 @@ function Delete(Id){
         if (this.readyState == 4 && this.status == 200) {
             Select(document.getElementById('Tabella'));
         }
-
     }
     xhttp.open("GET", "Delete.php?Identificativo="+Id, true);
     xhttp.send();
 }
 
 function Annulla(elemento) {
-    this.parentNode.innerHTML=elemento;
+    elemento.innerHTML=appoggio;
 }

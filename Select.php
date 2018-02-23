@@ -16,12 +16,12 @@ if ($result->num_rows > 0) {
         <input type='hidden' value='$cognome' name='Cognome'>
         <input type='hidden' value='$email' name='email'>
         <input type='hidden' value='$id' name='Id'>
-        <button class=\"btn btn-warning glyphicon glyphicon-pencil\" name='Update' id='Update' onclick='Form(this.parentNode,\"Update\",$id)'>Update</button>
+        <button class=\"btn btn-warning glyphicon glyphicon-pencil\" name='Update' id='Update' onclick='Form(this.parentNode,\"Update\",$id)'> Update</button>
         </p> " .
         "</td><td>
         <label for='submit'></label>
         <input type='hidden' value='$id' name='Righe'>
-        <button class=\"btn btn-danger glyphicon glyphicon-minus\" name='submit' id='submit' onclick='Delete($id)'>Delete</button> </form>" ."</td>" ."</tr>";
+        <button class=\"btn btn-danger glyphicon glyphicon-minus\" name='submit' id='submit' onclick='Delete($id)'> Delete</button> </form>" ."</td>" ."</tr>";
     }
 } else {
     echo "Nessun Risultato";
