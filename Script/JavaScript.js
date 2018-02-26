@@ -24,20 +24,11 @@ function Ordina(tabella,elementi){
         appoggioTabella[i]=tabella[i+1].innerHTML;
     }
     appoggio.sort();
-
     for(var i=0;i<appoggio.length;i++)  tabella[i+1].innerHTML=appoggioTabella[appoggio[i][appoggio[i].length-1]];
 }
 
 function Select(Tabella) {
     $(Tabella).load("Select.php");
-    /*var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            Tabella.innerHTML = this.responseText;
-        }
-    };
-    xhttp.open("GET", "Select.php", true);
-    xhttp.send();*/
 }
 
 function Form(elemento,tipo,id){
@@ -58,49 +49,34 @@ function Form(elemento,tipo,id){
 }
 
 function Aggiungi(elemento) {
-   // var xhttp = new XMLHttpRequest();
     var nome=$(elemento).find('input')[0].value;
     var cognome=$(elemento).find('input')[1].value;
     var email=$(elemento).find('input')[2].value;
-    $(elemento).load("Aggiungi.php?nome=" + nome + "&cognome=" + cognome + "&email=" + email)
-    /*xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            if(this.responseText!="")  $(elemento).find('input')[0].value=this.responseText;
-            else {
-                elemento.innerHTML = "<button class=\"btn btn-success glyphicon glyphicon-plus\" onclick=\"Form($('#p')[0],'Aggiungi',0);\"> Aggiungi</button>";
-                Select($('#Tabella')[0]);
-            }
+    $("#prova").load("Aggiungi.php?nome=" + nome + "&cognome=" + cognome + "&email=" + email, function (responseTxt) {
+        if(responseTxt!="") alert(responseTxt);
+        else {
+            elemento.innerHTML = "<button class=\"btn btn-success glyphicon glyphicon-plus\" onclick=\"Form($('#p')[0],'Aggiungi',0);\"> Aggiungi</button>";
+            Select($('#Tabella')[0]);
         }
-    };
-    xhttp.open("GET", "Aggiungi.php?nome=" + nome + "&cognome=" + cognome + "&email=" + email, true);
-    xhttp.send();*/
+    });
 }
 
 function Update(elemento) {
-    var xhttp = new XMLHttpRequest();
     var nome=$(elemento).find('input')[0].value;
     var cognome=$(elemento).find('input')[1].value;
     var email=$(elemento).find('input')[2].value;
     var id=$(elemento).find('input')[3].value;
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            if(this.responseText!="")  elemento.getElementsByTagName('input')[0].value=this.responseText;
-            else Select($('#Tabella')[0]);
-        }
-    };
-    xhttp.open("GET", "Update.php?nome=" + nome + "&cognome=" + cognome + "&email=" + email +"&Identificativo="+id, true);
-    xhttp.send();
+    $("#prova").load("Update.php?nome=" + nome + "&cognome=" + cognome + "&email=" + email +"&Identificativo="+id,function (responseTxt) {
+        if(responseTxt=="") alert("Email non valida");
+        else Select($('#Tabella')[0]);
+    });
 }
 
 function Delete(Id){
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            Select($('#Tabella')[0]);
-        }
-    }
-    xhttp.open("GET", "Delete.php?Identificativo="+Id, true);
-    xhttp.send();
+    $("#prova").load("Delete.php?Identificativo="+Id,function () {
+        Select($('#Tabella')[0]);
+    });
+
 }
 
 function Annulla(elemento) {

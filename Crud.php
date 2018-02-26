@@ -21,6 +21,7 @@
 <form>
     <h4>Ricerca</h4> <input type="text" id="ricerca" onkeyup="Ricerca($('#ricerca')[0].value,$('td'));">
 </form>
+<p id="prova" class="hidden"></p>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
 </body>

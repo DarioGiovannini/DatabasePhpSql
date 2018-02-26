@@ -2,7 +2,8 @@
 include 'Connessione.php';
 $sql = "SELECT * FROM tabella";
 $result = $conn->query($sql);
-$text="<thead>         
+$text="<thead>     
+       <th> Id      </th>    
        <th> Nome    </th>
        <th> Cognome </th>
        <th> Email   </th>
