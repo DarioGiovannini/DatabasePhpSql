@@ -8,5 +8,6 @@
         $sql = "UPDATE tabella SET Nome='$nome',Cognome='$cognome',email='$email' WHERE Id='$id'";
         $conn->query($sql);
         $conn->close();
+        echo "";
     }
-    else echo "";
+    else  echo "Email non valida";

@@ -4,10 +4,10 @@
     $cognome = $conn->real_escape_string(htmlentities($_GET['cognome']));
     $email = $conn->real_escape_string(htmlentities($_GET['email']));
     $sql = "SELECT * FROM tabella";
-    $result = $conn->query($sql);
+    $risultato = $conn->query($sql);
     $f=0;
-    while ($row = $result->fetch_assoc()) {
-        if ($row["Nome"] == $nome && $row["Cognome"] == $cognome) {
+    while ($riga = $risultato->fetch_assoc()) {
+        if ($riga["Nome"] == $nome && $riga["Cognome"] == $cognome) {
             $f = 1;
             break;
         }
