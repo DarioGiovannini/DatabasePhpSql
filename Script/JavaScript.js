@@ -21,79 +21,79 @@ function Ordina(tabella,elementi){ //Funzione che ordina la tabella
         appoggioTabella[i]=tabella[i].innerHTML; //Utilizzo delle variabili di appoggio perchè se manipolo direttamente i vettori di partenza vengono modificati nella pagina html direttamente causando diversi bug
     }
     appoggio.sort(); //richiamo la funzione che riordina il vettore contenente gli elementi
-    for(var i=0;i<appoggio.length;i++)  tabella[i].innerHTML=appoggioTabella[appoggio[i][appoggio[i].length-1]]; //Manipolo la tabella
+    for(var i=0;i<appoggio.length;i++)  tabella[i].innerHTML=appoggioTabella[appoggio[i][appoggio[i].length-1]]; //Manipolo la tabella utilizzando l'indice scritto all'interno dell' appoggio
 }
 
-function Select(Tabella) {
-    $(Tabella).load("Select.php", function () {
-        $("body").fadeIn();
+function Select(Tabella) { //Funzione che richiama la select
+    $(Tabella).load("Select.php", function () { //Utilizzando la funzione jquery load richiamo il server per eseguire la select
+        $("body").fadeIn();                     //Una volta che il server ha eseguito le sue funzioni mostra il body
     });
-    $("#p").slideDown();
+    $("#p").slideDown();                        //mostra il bottone aggiungi
 }
 
 function Form(elemento,tipo,id){
-    $("#Invia").unbind("click");
-    $("#Aggiungi").slideUp("slow");
-    $('#panel').slideDown("slow");
-    if(tipo=="Aggiungi")
+    $("#Invia").unbind("click");                //Rimuovo qualsiasi event listener che riguarda il click concernente il bottone invia
+    $("#p").slideUp("slow");                    //Nascondo il pulsante aggiungi
+    $('#panel').slideDown("slow");              //Mostro il form
+    if(tipo=="Aggiungi")                        //Se ha cliccato su Aggiungi
     {
-        $("#Invia").click(function () {
+        $("#Invia").click(function () {         //Aggiungo l'event listener dell'aggiungi al bottone Invia
             Aggiungi(this.parentNode);
         });
-        $('#panel').find('input')[0].value="";
+        $('#panel').find('input')[0].value="";  //Pongo tutti valori delle textbox nulle nel caso in cui non lo siano
         $('#panel').find('input')[1].value="";
         $('#panel').find('input')[2].value="";
         $('#panel').find('input')[3].value="";
     }
-    else if(tipo=="Update") {
+    else if(tipo=="Update")                     //Se ha cliccato Update
+    {                                           //Aggiungo l'event listener dell'Update al bottone Invia
         $("#Invia").click(function () {
             Update(this.parentNode);
         });
-        $('#panel').find('input')[0].value=$(elemento).find('input')[0].value;
+        $('#panel').find('input')[0].value=$(elemento).find('input')[0].value; //Pongo i valori delle textbox del form al suo corrispettivo all'interno della tabella
         $('#panel').find('input')[1].value=$(elemento).find('input')[1].value;
         $('#panel').find('input')[2].value=$(elemento).find('input')[2].value;
         $('#panel').find('input')[3].value=id;
     }
 }
 
-function Aggiungi(elemento) {
-    var nome=$(elemento).find('input')[0].value;
+function Aggiungi(elemento) {                           //Funzione che esegue l'insert Into
+    var nome=$(elemento).find('input')[0].value;        //Prendo il nome cogome de email dalle textbox
     var cognome=$(elemento).find('input')[1].value;
     var email=$(elemento).find('input')[2].value;
-    $("#prova").load("Aggiungi.php?nome=" + nome + "&cognome=" + cognome + "&email=" + email, function (responseTxt) {
-        if(responseTxt!="") alert(responseTxt);
-        else {
-            $(elemento).slideUp("slow");
-            $("#Aggiungi").slideDown("slow");
-            Select($('#Tabella')[0]);
+    $("#prova").load("Aggiungi.php?nome=" + nome + "&cognome=" + cognome + "&email=" + email, function (responseTxt) {  //Richiamo il server per eseguire la funzione Aggiungi
+        if(responseTxt!="") alert(responseTxt);         //Se c'è stato un errore richiamo un alert che lo enunzia
+        else {                                          //Altrimenti
+            $(elemento).slideUp("slow");                //Nascondo il form
+            $("#p").slideDown("slow");                  //Mostro il bottone aggiungi
+            Select($('#Tabella')[0]);                   //Aggiorno la tabella richiamando la funzione di select
         }
     });
 }
 
-function Update(elemento) {
-
-    var nome=$(elemento).find('input')[0].value;
+function Update(elemento) {                             //Funzione che esegue l'Update
+    var nome=$(elemento).find('input')[0].value;        //Prendo il nome cogome de email dalle textbox
     var cognome=$(elemento).find('input')[1].value;
     var email=$(elemento).find('input')[2].value;
-    var id=$(elemento).find('input')[3].value;
-    $("#prova").load("Update.php?nome=" + nome + "&cognome=" + cognome + "&email=" + email +"&Identificativo="+id,function (responseTxt) {
-        if(responseTxt!="") alert(responseTxt);
+    var id=$(elemento).find('input')[3].value;          //Prendo l'id dal valore dell'input type hidden
+    $("#prova").load("Update.php?nome=" + nome + "&cognome=" + cognome + "&email=" + email +"&Identificativo="+id,function (responseTxt) {  //Richiamo il servere che esegue la funzione di Update
+        if(responseTxt!="") alert(responseTxt);         //Se c'è stato un errore richiamo un alert che lo enunzia
         else {
-            $(elemento).slideUp("slow");
-            $("#Aggiungi").slideDown("slow");
-            Select($('#Tabella')[0]);
+            $(elemento).slideUp("slow");                //Nascondo il form
+            $("#p").slideDown("slow");                  //Mostro il bottone aggiungi
+            Select($('#Tabella')[0]);                   //Aggiorno la tabella richiamando la funzione di select
         }
     });
 }
 
-function Delete(Id){
-    $("#prova").load("Delete.php?Identificativo="+Id,function () {
-        Select($('#Tabella')[0]);
+function Delete(Id){                                    //funzione che esegue il delete
+    $("#prova").load("Delete.php?Identificativo="+Id,function () {  //Richiamo il server che esegue la funzione di delete
+        Select($('#Tabella')[0]);                                   //Aggiorno la tabella richiamando la funzione di select
     });
 }
 
-function Annulla(elemento) {
-    $("#Invia").unbind("click");
-    $(elemento).slideUp("slow");
-    $("#Aggiungi").slideDown("slow");
+function Annulla(elemento) {                            //Funzione che esegue l'uscita dal form
+    $("#Invia").unbind("click");                        //Rimuovo qualsiasi event listener che riguarda il click concernente il bottone invia
+    $(elemento).slideUp("slow");                        //Nascondo il form
+    $("#p").slideDown("slow");                          //Mostro il pulsante aggiungi
 }
