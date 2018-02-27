@@ -30,8 +30,8 @@ if ($risultato->num_rows > 0) {     //Controllo che la SELECT abbia travato dell
         </p>
         </td><td>" .
         "<input type='hidden' value='$id' name='Righe'>" . //Creo un campo nascosto che contiene l'id
-        "<button class=\"btn btn-danger btn-block glyphicon glyphicon-minus\" onclick='cancella($id)'> Delete </button>" ."</td>" ."</tr>";
-    }   //Continuo a generare la tabella inserendo i dovuti eventi con i vari value e name
+        "<button class=\"btn btn-danger btn-block glyphicon glyphicon-minus\" onclick='cancella($id)'> Delete </button>" ."</td>" ."</tr>";//Creo il bottone Delete
+    }
 } else {
     echo "Nessun Risultato"; //se non ha trovato alcuna riga
 }
