@@ -16,7 +16,7 @@ if ($risultato->num_rows > 0) {     //Controllo che la SELECT abbia travato dell
         $email=$conn->real_escape_string(htmlentities($riga["email"]));     //Prendo il campo email svolgendo i dovuti controlli
         $nome=$conn->real_escape_string(htmlentities($riga["Nome"]));       //Prendo il campo Nome svolgendo i dovuti controlli
         $cognome=$conn->real_escape_string(htmlentities($riga["Cognome"])); //Prendo il campo Cognome svolgendo i dovuti controlli
-        $stringa = $stringa  . "<tr name='tab'>"."<td name='id' onclick='Ordina($(\"tr[name=\\\"tab\\\"]\"),$(\"td[name=\\\"id\\\"]\"))'>" .
+        $stringa = $stringa  . "<tr name='tab' id='$id'>"."<td name='id' onclick='Ordina($(\"tr[name=\\\"tab\\\"]\"),$(\"td[name=\\\"id\\\"]\"))'>" .
         $riga["Id"]     . "</td><td name='nome' onclick='Ordina($(\"tr[name=\\\"tab\\\"]\"),$(\"td[name=\\\"nome\\\"]\"))'>" .
         $riga["Nome"]   . "</td><td name='cognome' onclick='Ordina($(\"tr[name=\\\"tab\\\"]\"),$(\"td[name=\\\"cognome\\\"]\"))' >" .
         $riga["Cognome"]. "</td><td name='Email'onclick='Ordina($(\"tr[name=\\\"tab\\\"]\"),$(\"td[name=\\\"Email\\\"]\"))'>" .

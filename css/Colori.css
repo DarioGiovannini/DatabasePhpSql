@@ -1,11 +1,15 @@
 .giallo{
-    background-color: #f0d32d;
+    background-color: #f0b732;
 }
 .nascosto{
     display: none;
 }
 .sfondo{
     background-color: #e38d13;
+    background-image: url("Immagini/Aquila_transparent.png");
+    background-size: 100% 150%;
+    background-repeat: no-repeat;
+    display: none;
 }
 .bianco{
     background-color: #ffffff;

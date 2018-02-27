@@ -1,41 +1,40 @@
 function Ricerca(filtro,elementi)
 {
-    Scolora(elementi);
-    if(filtro=="") return 0;
-    var i;
-    for(i=0;i<elementi.length;i++){
-        if(elementi[i].innerHTML.toUpperCase().search(filtro.toUpperCase())!=-1 && elementi[i].innerHTML.search('<')==-1) elementi[i].style.backgroundColor="lightblue";
+    Scolora(elementi);                  //Richiamo la funzione che scolora le caselle
+    if(filtro=="") return 0;            //Se il filtro è vuoto esce dalla funzione
+    for(var i=0;i<elementi.length;i++){ //Faccio un ciclo che prende il contenuto di ogni casella e lo pone in maiuscolo e attraverso la funzione search ricerco il filtro all'interno della casella, per evitare che controlli anche i bottoni
+        if(elementi[i].innerHTML.toUpperCase().search(filtro.toUpperCase())!=-1 && elementi[i].innerHTML.search('<')==-1) elementi[i].style.backgroundColor="lightblue"; // o i tag html in generale ho inserito un controllo che vede se c'è un minore. Se la ricerca ha avuto risultati positivi lo coloro di azzurro
     }
 }
 function Scolora(elementi) {
-    var i;
-    elementi[0].style.backgroundColor="";
-    for(i=1;i<elementi.length;i++){
-        elementi[i].style.backgroundColor="white";
+    for(var i=1;i<elementi.length;i++){
+        elementi[i].style.backgroundColor="white"; //Ciclo che rende tutte le casello bianche, parte da 1 perchè non deve prendere in considerazione il primo td che incontra che sarebbe il titolo
     }
 }
 
-function Ordina(tabella,elementi){
+function Ordina(tabella,elementi){ //Funzione che ordina la tabella
     var appoggio=new Array();
-    var appoggioTabella=new Array();
-    for(var i=0;i<elementi.length;i++)
+    var appoggioTabella=new Array(); // Dichiaro delle variabili di appoggio che serviranno in seguito
+    for(var i=0;i<elementi.length;i++)  //ciclo che riempie le variabil di appoggio
     {
-        appoggio[i]=elementi[i].innerHTML.toLowerCase() + i.toString();
-        appoggioTabella[i]=tabella[i].innerHTML;
+        appoggio[i]=elementi[i].innerHTML.toLowerCase() + i.toString(); //pongo il tutto minuscolo per renderlo non case sensitive e poi concateno l'indice che corrisponde alla posizione attuale
+        appoggioTabella[i]=tabella[i].innerHTML; //Utilizzo delle variabili di appoggio perchè se manipolo direttamente i vettori di partenza vengono modificati nella pagina html direttamente causando diversi bug
     }
-    appoggio.sort();
-    for(var i=0;i<appoggio.length;i++)  tabella[i].innerHTML=appoggioTabella[appoggio[i][appoggio[i].length-1]];
+    appoggio.sort(); //richiamo la funzione che riordina il vettore contenente gli elementi
+    for(var i=0;i<appoggio.length;i++)  tabella[i].innerHTML=appoggioTabella[appoggio[i][appoggio[i].length-1]]; //Manipolo la tabella
 }
 
 function Select(Tabella) {
-    $(Tabella).load("Select.php");
-    $("#p").slideDown("slow");
+    $(Tabella).load("Select.php", function () {
+        $("body").fadeIn();
+    });
+    $("#p").slideDown();
 }
 
 function Form(elemento,tipo,id){
     $("#Invia").unbind("click");
-    $('#panel').slideDown("slow");
     $("#Aggiungi").slideUp("slow");
+    $('#panel').slideDown("slow");
     if(tipo=="Aggiungi")
     {
         $("#Invia").click(function () {

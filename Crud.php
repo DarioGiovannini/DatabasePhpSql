@@ -23,12 +23,12 @@
                             Nome<input type="text" name="nome" required>
                             Cognome<input type="text" name="cognome" required>
                             Email<input type="email" name="email">
-                            <input  type='hidden' name='Identificativo'>
-                            <button id="Invia" class="btn btn-success glyphicon glyphicon-envelope"> Invia</button>
-                            <button id='Annulla' class='btn btn-danger glyphicon glyphicon-remove' onclick='Annulla(this.parentNode)'> Annulla</button>
+                            <input  type='hidden' name='Identificativo'> <!-- campo nascosto che conterrà l'id -->
+                            <button id="Invia" class="btn btn-success glyphicon glyphicon-envelope" style="width: 240px"> Invia</button>
+                            <button id='Annulla' class='btn btn-danger glyphicon glyphicon-remove' style="width: 240px" onclick='Annulla(this.parentNode)'> Annulla</button>
                         </div>
                         <div align="right" id="p" class="nascosto">
-                            <button id="Aggiungi" class="btn btn-success glyphicon glyphicon-plus" onclick="Form(this.parentNode,'Aggiungi',0);">Aggiungi</button>
+                            <button id="Aggiungi" class="btn btn-success glyphicon glyphicon-plus" style="width: 435px" onclick="Form(this.parentNode,'Aggiungi',0);">Aggiungi</button>
                         </div>
                     </div>
                     <table class='table table-hoover' id="Tabella">
