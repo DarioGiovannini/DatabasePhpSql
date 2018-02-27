@@ -44,8 +44,8 @@ function Form(elemento,tipo,id){
         $('#panel').find('input')[3].value="";
     }
     else if(tipo=="Update")                     //Se ha cliccato Update
-    {                                           //Aggiungo l'event listener dell'Update al bottone Invia
-        $("#Invia").click(function () {
+    {
+        $("#Invia").click(function () {         //Aggiungo l'event listener dell'Update al bottone Invia
             Update(this.parentNode);
         });
         $('#panel').find('input')[0].value=$(elemento).find('input')[0].value; //Pongo i valori delle textbox del form al suo corrispettivo all'interno della tabella
@@ -56,7 +56,7 @@ function Form(elemento,tipo,id){
 }
 
 function Aggiungi(elemento) {                           //Funzione che esegue l'insert Into
-    var nome=$(elemento).find('input')[0].value;        //Prendo il nome cogome de email dalle textbox
+    var nome=$(elemento).find('input')[0].value;        //Prendo il nome,cognome e email dalle textbox
     var cognome=$(elemento).find('input')[1].value;
     var email=$(elemento).find('input')[2].value;
     if(nome==""&& cognome=="") alert("Nome e cognome non inseriti"); //Controllo se nome e cognome sono validi
