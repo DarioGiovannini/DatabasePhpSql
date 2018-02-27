@@ -16,23 +16,21 @@ if ($risultato->num_rows > 0) {     //Controllo che la SELECT abbia travato dell
         $email=$conn->real_escape_string(htmlentities($riga["email"]));     //Prendo il campo email svolgendo i dovuti controlli
         $nome=$conn->real_escape_string(htmlentities($riga["Nome"]));       //Prendo il campo Nome svolgendo i dovuti controlli
         $cognome=$conn->real_escape_string(htmlentities($riga["Cognome"])); //Prendo il campo Cognome svolgendo i dovuti controlli
-        $stringa = $stringa  . "<tr name='tab' id='$id'>"."<td name='id' onclick='ordina($(\"tr[name=\\\"tab\\\"]\"),$(\"td[name=\\\"id\\\"]\"))'>" .
-        $riga["Id"]     . "</td><td name='nome' onclick='ordina($(\"tr[name=\\\"tab\\\"]\"),$(\"td[name=\\\"nome\\\"]\"))'>" .
+        $stringa = $stringa  . "<tr name='tab' id='$id'>"."<td name='id' onclick='ordina($(\"tr[name=\\\"tab\\\"]\"),$(\"td[name=\\\"id\\\"]\"))'>" . //genero i campi td e attraverso i selettori jquery
+        $riga["Id"]     . "</td><td name='nome' onclick='ordina($(\"tr[name=\\\"tab\\\"]\"),$(\"td[name=\\\"nome\\\"]\"))'>" .                        // ottengo i parametri da passare alla funzione ordina
         $riga["Nome"]   . "</td><td name='cognome' onclick='ordina($(\"tr[name=\\\"tab\\\"]\"),$(\"td[name=\\\"cognome\\\"]\"))' >" .
         $riga["Cognome"]. "</td><td name='Email'onclick='ordina($(\"tr[name=\\\"tab\\\"]\"),$(\"td[name=\\\"Email\\\"]\"))'>" .
         $riga["email"]  . "</td><td>" .
-        "<label for='Update'></label>        
-        <p>
-        <input type='hidden' value='$nome' name='Nome'>
-        <input type='hidden' value='$cognome' name='Cognome'>
-        <input type='hidden' value='$email' name='email'>
-        <input type='hidden' value='$id' name='Id'>
-        <button class=\"btn btn-warning btn-block glyphicon glyphicon-pencil\" name='Update' id='Update' data-toggle=\"modal\" data-target=\"#FormModale\" onclick=\"formModale(this.parentNode,'Update',$id)\"> Update</button>
+        "<p>".
+        "<input type='hidden' value='$nome' name='Nome'>" .             //Creo dei campi nascosti che contengono i valori necessari per richiamare le funzioni
+        "<input type='hidden' value='$cognome' name='Cognome'>" .
+        "<input type='hidden' value='$email' name='email'>" .
+        "<input type='hidden' value='$id' name='Id'>" .
+        "<button class=\"btn btn-warning btn-block glyphicon glyphicon-pencil\" data-toggle=\"modal\" data-target=\"#FormModale\" onclick=\"formModale(this.parentNode,'Update',$id);\"> Update</button>
         </p>
-        </td><td>
-        <label for='submit'></label>
-        <input type='hidden' value='$id' name='Righe'>
-        <button class=\"btn btn-danger btn-block glyphicon glyphicon-minus\" name='submit' id='submit' onclick='cancella($id)'> Delete </button>" ."</td>" ."</tr>";
+        </td><td>" .
+        "<input type='hidden' value='$id' name='Righe'>" . //Creo un campo nascosto che contiene l'id
+        "<button class=\"btn btn-danger btn-block glyphicon glyphicon-minus\" onclick='cancella($id)'> Delete </button>" ."</td>" ."</tr>";
     }   //Continuo a generare la tabella inserendo i dovuti eventi con i vari value e name
 } else {
     echo "Nessun Risultato"; //se non ha trovato alcuna riga

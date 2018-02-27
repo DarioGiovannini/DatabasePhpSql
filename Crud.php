@@ -38,7 +38,7 @@
                 <div class="container">
                     <div class="row">
                         <div align="right">
-                            <button id="Aggiungi" class="btn btn-success glyphicon glyphicon-plus" style="width: 435px" data-toggle="modal" data-target="#FormModale" onclick="formModale(this.parentNode,'Aggiungi',0)">Aggiungi</button>
+                            <button id="Aggiungi" class="btn btn-success glyphicon glyphicon-plus" style="width: 42%" data-toggle="modal" data-target="#FormModale" onclick="formModale(this.parentNode,'Aggiungi',0)">Aggiungi</button>
                         </div>
                     </div>
                     <table class='table table-hoover table-striped' id="Tabella">
