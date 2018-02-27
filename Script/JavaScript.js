@@ -33,8 +33,6 @@ function Select(Tabella) { //Funzione che richiama la select
 
 function Form(elemento,tipo,id){
     $("#Invia").unbind("click");                //Rimuovo qualsiasi event listener che riguarda il click concernente il bottone invia
-    $("#p").slideUp("slow");                    //Nascondo il pulsante aggiungi
-    $('#panel').slideDown("slow");              //Mostro il form
     if(tipo=="Aggiungi")                        //Se ha cliccato su Aggiungi
     {
         $("#Invia").click(function () {         //Aggiungo l'event listener dell'aggiungi al bottone Invia
@@ -61,14 +59,20 @@ function Aggiungi(elemento) {                           //Funzione che esegue l'
     var nome=$(elemento).find('input')[0].value;        //Prendo il nome cogome de email dalle textbox
     var cognome=$(elemento).find('input')[1].value;
     var email=$(elemento).find('input')[2].value;
-    $("#prova").load("Aggiungi.php?nome=" + nome + "&cognome=" + cognome + "&email=" + email, function (responseTxt) {  //Richiamo il server per eseguire la funzione Aggiungi
-        if(responseTxt!="") alert(responseTxt);         //Se c'è stato un errore richiamo un alert che lo enunzia
-        else {                                          //Altrimenti
-            $(elemento).slideUp("slow");                //Nascondo il form
-            $("#p").slideDown("slow");                  //Mostro il bottone aggiungi
-            Select($('#Tabella')[0]);                   //Aggiorno la tabella richiamando la funzione di select
-        }
-    });
+    if(nome==""&& cognome=="") alert("Nome e cognome non inseriti"); //Controllo se nome e cognome sono validi
+    else if(nome=="") alert("Nome non inserito");
+    else if(cognome=="") alert("Cognome non inserito");
+    else{
+        $("#prova").load("Aggiungi.php?nome=" + nome + "&cognome=" + cognome + "&email=" + email, function (responseTxt) {  //Richiamo il server per eseguire la funzione Aggiungi
+            if(responseTxt!="") alert(responseTxt);      //Se c'è stato un errore richiamo un alert che lo enunzia
+            else {
+                Select($('#Tabella')[0]);                //Aggiorno la tabella richiamando la funzione di select
+                $('#FormModale').modal('hide');          //Nascondo il form Modale
+            }
+
+        });
+    }
+
 }
 
 function Update(elemento) {                             //Funzione che esegue l'Update
@@ -76,24 +80,22 @@ function Update(elemento) {                             //Funzione che esegue l'
     var cognome=$(elemento).find('input')[1].value;
     var email=$(elemento).find('input')[2].value;
     var id=$(elemento).find('input')[3].value;          //Prendo l'id dal valore dell'input type hidden
-    $("#prova").load("Update.php?nome=" + nome + "&cognome=" + cognome + "&email=" + email +"&Identificativo="+id,function (responseTxt) {  //Richiamo il servere che esegue la funzione di Update
-        if(responseTxt!="") alert(responseTxt);         //Se c'è stato un errore richiamo un alert che lo enunzia
-        else {
-            $(elemento).slideUp("slow");                //Nascondo il form
-            $("#p").slideDown("slow");                  //Mostro il bottone aggiungi
-            Select($('#Tabella')[0]);                   //Aggiorno la tabella richiamando la funzione di select
-        }
-    });
+    if(nome==""&& cognome=="") alert("Nome e cognome non inseriti"); //Controllo se nome e cognome sono validi
+    else if(nome=="") alert("Nome non inserito");
+    else if(cognome=="") alert("Cognome non inserito");
+    else {
+        $("#prova").load("Update.php?nome=" + nome + "&cognome=" + cognome + "&email=" + email +"&Identificativo="+id,function (responseTxt) {  //Richiamo il servere che esegue la funzione di Update
+            if(responseTxt!="") alert(responseTxt);     //Se c'è stato un errore richiamo un alert che lo enunzia
+            else {
+                Select($('#Tabella')[0]);               //Aggiorno la tabella richiamando la funzione di select
+                $('#FormModale').modal('hide');         //Nascondo il form Modale
+            }
+        });
+    }
 }
 
 function Delete(Id){                                    //funzione che esegue il delete
     $("#prova").load("Delete.php?Identificativo="+Id,function () {  //Richiamo il server che esegue la funzione di delete
         Select($('#Tabella')[0]);                                   //Aggiorno la tabella richiamando la funzione di select
     });
-}
-
-function Annulla(elemento) {                            //Funzione che esegue l'uscita dal form
-    $("#Invia").unbind("click");                        //Rimuovo qualsiasi event listener che riguarda il click concernente il bottone invia
-    $(elemento).slideUp("slow");                        //Nascondo il form
-    $("#p").slideDown("slow");                          //Mostro il pulsante aggiungi
 }

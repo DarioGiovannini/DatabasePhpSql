@@ -10,6 +10,24 @@
     <script language="JavaScript" type="text/JavaScript" src="Script/JavaScript.js"></script>
 </head>
 <body onload="Select($('#Tabella')[0]);"  class="sfondo">
+<div id="FormModale" class="modal Fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" align="center">Completa i campi</h4>
+            </div>
+            <div class="modal-body" id="panel">
+                Nome<input class="form-control" type="text" name="nome">
+                Cognome<input class="form-control" type="text" name="cognome">
+                Email<input class="form-control" type="email" name="email">
+                <input  type='hidden' name='Identificativo'> <!-- campo nascosto che conterrà l'id -->
+                <br>
+                <button type="button" id="Invia" class="btn btn-success glyphicon glyphicon-envelope btn-block"> Invia</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
     <table border="2">
         <tr class="giallo">
@@ -19,16 +37,8 @@
             <td>
                 <div class="container">
                     <div class="row">
-                        <div id="panel" class="nascosto">
-                            Nome<input type="text" name="nome" required>
-                            Cognome<input type="text" name="cognome" required>
-                            Email<input type="email" name="email">
-                            <input  type='hidden' name='Identificativo'> <!-- campo nascosto che conterrà l'id -->
-                            <button id="Invia" class="btn btn-success glyphicon glyphicon-envelope" style="width: 240px"> Invia</button>
-                            <button id='Annulla' class='btn btn-danger glyphicon glyphicon-remove' style="width: 240px" onclick='Annulla(this.parentNode)'> Annulla</button>
-                        </div>
                         <div align="right" id="p" class="nascosto">
-                            <button id="Aggiungi" class="btn btn-success glyphicon glyphicon-plus" style="width: 435px" onclick="Form(this.parentNode,'Aggiungi',0);">Aggiungi</button>
+                            <button id="Aggiungi" class="btn btn-success glyphicon glyphicon-plus" style="width: 435px" data-toggle="modal" data-target="#FormModale" onclick="Form(this.parentNode,'Aggiungi',0)">Aggiungi</button>
                         </div>
                     </div>
                     <table class='table table-hoover' id="Tabella">

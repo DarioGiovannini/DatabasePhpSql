@@ -27,7 +27,7 @@ if ($risultato->num_rows > 0) {     //Controllo che la SELECT abbia travato dell
         <input type='hidden' value='$cognome' name='Cognome'>
         <input type='hidden' value='$email' name='email'>
         <input type='hidden' value='$id' name='Id'>
-        <button class=\"btn btn-warning btn-block glyphicon glyphicon-pencil\" name='Update' id='Update' onclick='Form(this.parentNode,\"Update\",$id)'> Update</button>
+        <button class=\"btn btn-warning btn-block glyphicon glyphicon-pencil\" name='Update' id='Update' data-toggle=\"modal\" data-target=\"#FormModale\" onclick='Form(this.parentNode,\"Update\",$id)'> Update</button>
         </p>
         </td><td>
         <label for='submit'></label>
